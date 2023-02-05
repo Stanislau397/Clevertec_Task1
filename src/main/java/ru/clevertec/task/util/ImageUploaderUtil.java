@@ -13,10 +13,10 @@ public class ImageUploaderUtil {
 
     }
 
-    public static String save(MultipartFile IMAGE, String uploadDirectory) {
+    public static String save(MultipartFile image, String uploadDirectory) {
         Path uploadPath = Paths.get(uploadDirectory);
-        String imageName = IMAGE.getOriginalFilename();
-        try (InputStream inputStream = IMAGE.getInputStream()) {
+        String imageName = image.getOriginalFilename();
+        try (InputStream inputStream = image.getInputStream()) {
             if (imageName != null) {
                 Path filePath = uploadPath.resolve(imageName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);

@@ -6,6 +6,11 @@ import ru.clevertec.task.entity.User;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.Optional;
+
+@DataJpaTest
 class UserRepositoryTest {
 
     @Autowired
@@ -22,4 +27,15 @@ class UserRepositoryTest {
         assertThat(user).isEqualTo(expectedUser);
     }
 
+    void willSelectUserById() {
+        Long userId = 1L;
+        User user = new User();
+        user.setUserName("Stanislau");
+        user.setEmail("Some@gmail.com");
+        user.setUSERID(userId);
+        user.setPASSWORD("Ldasd12345");
+        userRepository.save(user);
+        Optional<User> expectedUser = userRepository.selectById(userId);
+        assertThat(user).isEqualTo(expectedUser);
+    }
 }

@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public User register(User user, String password) {
+    public User register(User userFromRequest, String password) {
         User savedUser = new User();
-        if (isUsernameValid(user.getUserName())
-                && isEmailValid(user.getEmail())
-                && isPasswordValid(user.getPASSWORD())) {
-            user.setPASSWORD(password);
-            savedUser = userRepository.save(user);
+        if (isUsernameValid(userFromRequest.getUserName())
+                && isEmailValid(userFromRequest.getEmail())
+                && isPasswordValid(userFromRequest.getPASSWORD())) {
+            userFromRequest.setPASSWORD(password);
+            savedUser = userRepository.save(userFromRequest);
         }
         return savedUser;
     }

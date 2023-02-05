@@ -14,7 +14,6 @@ public class ImageUploaderUtil {
     }
 
     public static String save(MultipartFile IMAGE, String uploadDirectory) {
-        
         Path uploadPath = Paths.get(uploadDirectory);
         String imageName = IMAGE.getOriginalFilename();
         try (InputStream inputStream = IMAGE.getInputStream()) {

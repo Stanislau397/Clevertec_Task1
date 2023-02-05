@@ -7,10 +7,10 @@ import ru.clevertec.task.entity.User;
 public interface UserService {
 
     /**
-     * 
-     * @param user
+     *
+     * @param userFromRequest
      * @param password
      * @return
      */
-    User register(User user, String password);
+    User register(User userFromRequest, String password);
 }

@@ -38,7 +38,7 @@ class UserServiceImplTest {
         user.setPASSWORD("Password");
         user.setEmail("Email@gmail.com");
         when(UserRepository.save(user)).thenReturn(user);
-        User expectedUser = underTest.registerUser(user, user.getPASSWORD());
+        User expectedUser = underTest.register(user, user.getPASSWORD());
         assertThat(user).isEqualTo(expectedUser);
     }
 }

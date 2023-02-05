@@ -9,20 +9,22 @@ import ru.clevertec.task.entity.User;
 import ru.clevertec.task.repository.UserRepository;
 import ru.clevertec.task.service.UserService;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
 class UserServiceImplTest {
 
     @Mock
-    private UserRepository UserRepository;
+    private UserRepository userRepository;
     private UserService underTest;
     private AutoCloseable autoCloseable;
 
     @BeforeEach
     void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        underTest = new UserServiceImpl(UserRepository);
+        underTest = new UserServiceImpl(userRepository);
     }
 
     @AfterEach
@@ -39,6 +41,21 @@ class UserServiceImplTest {
         user.setEmail("Email@gmail.com");
         when(UserRepository.save(user)).thenReturn(user);
         User expectedUser = underTest.register(user, user.getPASSWORD());
+        assertThat(user).isEqualTo(expectedUser);
+    }
+
+
+    @Test
+    void willFindUserById() {
+
+        Long userId = 1L;
+        User user = new User();
+        user.setUserName("Stanislau");
+        user.setEmail("Some@gmail.com");
+        user.setUSERID(userId);
+        user.setPASSWORD("Ldasd12345");
+        when(userRepository.selectById(userId)).thenReturn(Optional.of(user));
+        User expectedUser = underTest.findUserByUserId(userId);
         assertThat(user).isEqualTo(expectedUser);
     }
 }

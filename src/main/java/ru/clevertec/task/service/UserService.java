@@ -13,4 +13,11 @@ public interface UserService {
      * @return
      */
     User register(User userFromRequest, String password);
+
+    /**
+     * 
+     * @param userId
+     * @return
+     */
+    User findUserByUserId(Long userId);
 }

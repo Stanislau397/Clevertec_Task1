@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 class UserServiceImplTest {
 
     @Mock
-    private UserRepository UserRepository;
+    private UserRepository userRepository;
     private UserService underTest;
     private AutoCloseable autoCloseable;
 
     @BeforeEach
     void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        underTest = new UserServiceImpl(UserRepository);
+        underTest = new UserServiceImpl(userRepository);
     }
 
     @AfterEach
@@ -43,7 +43,7 @@ class UserServiceImplTest {
         user.setEmail("Some@gmail.com");
         user.setUSERID(userId);
         user.setPASSWORD("Ldasd12345");
-        when(UserRepository.selectById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.selectById(userId)).thenReturn(Optional.of(user));
         User expectedUser = underTest.findUserByUserId(userId);
         assertThat(user).isEqualTo(expectedUser);
     }

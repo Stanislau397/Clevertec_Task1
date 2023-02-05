@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
         return savedUser;
     }
-    
+
     @Override
     public User findUserByUserId(Long userId) {
         return userRepository.selectById(userId)

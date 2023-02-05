@@ -3,7 +3,7 @@ package ru.clevertec.task.entity;
 public class User {
 
     private Long USERID;
-    private String USERNAME;
+    private String userName;
     private String email;
     private String PASSWORD;
 
@@ -15,12 +15,12 @@ public class User {
         this.USERID = USERID;
     }
 
-    public String getUSERNAME() {
-        return USERNAME;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUSERNAME(String USERNAME) {
-        this.USERNAME = USERNAME;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
